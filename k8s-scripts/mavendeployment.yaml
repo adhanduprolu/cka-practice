@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mavendeployment
+  namespace: dev
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 2
+  minReadySeconds: 30
+  selector:
+    matchLabels:
+      app: mavenapp
+  template:
+    metadata:
+      name: mavenpod
+      namespace: dev
+      labels:
+        app: mavenapp
+    spec:
+      containers:
+      - name: mavencontainer
+        image: dockerhandson/maven-web-application:1
+        ports:
+        - containerPort: 8080
