@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: springsvc
-  namespace: dev
+  namespace: test
 spec:
   type: NodePort
   selector:
@@ -10,6 +10,4 @@ spec:
   ports:
   - port: 80
     targetPort: 8080
-    protocol: TCP
-    nodePort: 30007  # Optional, Kubernetes will auto-assign if not provided
 
