@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: mongodbrs
+spec:
+  selector:
+    matchLabels:
+      app: mongodbapp
+  template:
+     metadata:
+       name: mongodbpod
+       labels:
+         app: mongodbapp
+     spec:
+       containers:
+       - name: mongodbcont
+         image: mongo
+         ports:
+         - containerPort: 27017
+         env:
+         - name: MONGO_INITDB_ROOT_USERNAME
+           value: developer
+         - name: MONGO_INITDB_ROOT_PASSWORD
+           value: devdb@123
+
